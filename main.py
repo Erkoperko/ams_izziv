@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # Dataloader begins
     SEM_train_load = \
         torch.utils.data.DataLoader(dataset=SEM_train,
-                                    num_workers=16, batch_size=4, shuffle=True)
+                                    num_workers=16, batch_size=8, shuffle=True)
     SEM_val_load = \
         torch.utils.data.DataLoader(dataset=SEM_val,
                                     num_workers=3, batch_size=1, shuffle=True)
@@ -58,8 +58,8 @@ if __name__ == "__main__":
     save_dir = "../history/RMS"
 
     # Saving images and models directories
-    model_save_dir = "../history/RMS/saved_models3"
-    image_save_path = "../history/RMS/result_images3"
+    model_save_dir = "../history/RMS/kidney_models"
+    image_save_path = "../history/RMS/kidney_images"
 
     # Train
     print("Initializing Training!")
@@ -79,7 +79,7 @@ if __name__ == "__main__":
             values = [i+1, train_loss, train_acc, val_loss, val_acc]
             export_history(header, values, save_dir, save_file_name)
 
-            if (i+1) % 100 == 0:  # save model every 10 epoch
+            if (i+1) % 10 == 0:  # save model every 10 epoch
                 save_models(model, model_save_dir, i+1)
 
 '''
